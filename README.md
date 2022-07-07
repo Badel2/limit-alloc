@@ -1,4 +1,4 @@
-# gg-alloc
+# limit-alloc
 
 A custom allocator that allows to limit the available memory.
 
