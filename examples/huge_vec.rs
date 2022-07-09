@@ -6,5 +6,5 @@ use std::alloc::System;
 static A: Limit<System> = Limit::new(4_000_000, System);
 
 fn main() {
-    let huge_vec: Vec<u8> = Vec::with_capacity(4_000_001);
+    let _huge_vec: Vec<u8> = Vec::with_capacity(4_000_001);
 }

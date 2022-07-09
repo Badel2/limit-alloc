@@ -199,7 +199,8 @@ fuzz_target!(|methods: Vec<AllocatorMethod>| {
     let a = FakeAlloc {
         inner: Mutex::new(a),
     };
-    let a = Limit::new(1_000_000, a);
+    let limit = 1_000_000;
+    let a = Limit::new(limit, a);
     let mut allocs = vec![];
 
     // Interpret the fuzzer-provided methods and make the
@@ -238,4 +239,7 @@ fuzz_target!(|methods: Vec<AllocatorMethod>| {
             unsafe { a.dealloc(ptr, layout) };
         }
     }
+
+    // The remaning memory must be equal to the initial limit
+    assert_eq!(a.remaining(), limit);
 });
